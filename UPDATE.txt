@@ -1,0 +1,81 @@
+v1.4更新：
+
+用户态：1.所有数据包都写入kernel
+	2.采用双网卡机制
+	3.采用网卡混杂模式
+	4.采用MD5机制过虑本机发送的数据包
+
+内核态：1.加入了对非CFM的处理
+	2.改变了CFM包底层递送机制
+	3.协议块中相应接收接口和发送接口进行了调整
+
+v1.5更新：
+
+用户态：1.加入了management API的测试代码
+	主要改动源文件：example.c
+
+内核态：1.加入了management API
+	2.加入了TLV部分的处理
+	主要改动源文件：cfm_tlv.h
+			cfm_tlv.c
+			cfmConfig.h
+			cfmConfig.c
+			cfm_cmd.h
+			cfm.c
+			cfm_protocol.h
+			cfm_LBP.c
+			cfm_LTP.c
+			cfm_CCP.c
+
+v1.6更新：
+	对1.5版本进行了完善
+用户态：1.加入了CC、LT和LB部分management API的测试代码
+	主要改动源文件：example.c
+内核态：1.增加了一些management API
+	2.完善了部分TLV的处理
+	主要改动源文件：cfmConfig.h
+			cfmConfig.c
+			cfm_cmd.h
+			cfm.c
+			cfm_protocol.h
+			cfm_LBP.c
+			cfm_LTP.c
+			cfm_CCP.c
+
+v1.7更新：
+用户态：1.修改并新增了一些management API的测试代码
+	主要改动源文件：example.c
+内核态：
+	1.creat MP时，增加了meid的回收利用.
+	2.增加了cfmSupervisory_ShowAllMP来向用户返回CFM Moudule中所有MP的信息.
+	3.增加了Organization-Specific TLV的management API,但目前只有CC中会发送该TLV.
+	4.调整了各协议中对SenderId TLV的发送控制,完全按照设定的permission进行发送.
+	主要改动源文件：cfmConfig.h
+			cfmConfig.c
+			cfm_cmd.h
+			cfm_tlv.h
+			cfm.c
+			cfm_protocol.c
+			cfm_protocol.h
+			cfm_LBP.c
+			cfm_LTP.c
+			cfm_CCP.c
+v2.0更新：
+
+用户态： 1.部分用户态management API重新设计实现，以适应内部框架的变动
+	 主要改动源文件：example.c
+内核态： 整体框架严格按照802.1ag以及G.984.4文档重新设计实现
+	 1.分别实现Maintenance Domain list managed object、CFM Stack managed object、Default MD Level managed object、Configuration Error List managed object以及Maintenance Domain managed object、Maintenance Association managed object和Maintenance association End Point managed object.
+	 2.根据被管对象重新设计相应的数据结构
+	 3.更新用户态management API对应的代码实现
+	 4.各个子协议部分代码依照新系统框架重新设计实现
+	主要改动源文件：cfmConfig.h
+			cfmConfig.c
+			cfm_cmd.h
+			cfm_tlv.h
+			cfm.c
+			cfm_protocol.c
+			cfm_protocol.h
+			cfm_LBP.c
+			cfm_LTP.c
+			cfm_CCP.c	 
